@@ -8,6 +8,17 @@ import Airport from '../types/airport'
 
 const Page: NextPage = () => {
   const [query, setQuery] = useState<string>('')
+  const [debounceQuery, setDebounceQuery] = useState<string>('')
+
+  useEffect(()=>{
+   const handler= setTimeout(()=>{
+      setQuery(debounceQuery)
+    },600)
+
+    return ()=>{
+      clearInterval(handler)
+    }
+  },[debounceQuery])
 
   const airports = useApiData<Airport[]>(`/api/airports/${query}`, [], [query])
 
@@ -24,7 +35,8 @@ const Page: NextPage = () => {
           id="query"
           className="focus:ring-blue-600 focus:border-blue-600 block w-full sm:text-sm border-gray-300 text-gray-800 rounded bg-gray-50 p-3"
           placeholder="Search by name, IATA, city, or country"
-          onChange={(e) => setQuery(e.target.value)}
+          value={debounceQuery}
+          onChange={(e) => setDebounceQuery(e.target.value)}
         />
       </div>
 
