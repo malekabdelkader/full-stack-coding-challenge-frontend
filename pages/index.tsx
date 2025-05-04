@@ -40,17 +40,17 @@ const Page: NextPage = () => {
         />
       </div>
 
-      <div>
+      <div className='grid xl:grid-cols-3 md:grid-cols-2 sm:grid-cols-1  gap-4'>
         {airports.map((airport) => (
           <Link
-            className="flex items-center p-5 mt-5 text-gray-800 border border-gray-200 rounded-lg shadow-sm hover:border-blue-600 focus:border-blue-600 focus:ring focus:ring-blue-200 focus:outline-none"
+            className="p-5 mt-5 text-gray-800 border border-gray-200 rounded-lg shadow-sm hover:border-blue-600 focus:border-blue-600 focus:ring focus:ring-blue-200 focus:outline-none"
             href={`/airports/${airport.iata.toLowerCase()}`}
             key={airport.iata}
           >
             <span>
               {airport.name}, {airport.city}
             </span>
-            <span className="ml-auto text-gray-500">{airport.country}</span>
+            <div className="ml-auto mt-2 text-gray-500">{airport.country}</div>
           </Link>
         ))}
       </div>
