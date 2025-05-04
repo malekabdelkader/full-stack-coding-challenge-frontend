@@ -12,7 +12,7 @@ export const allAirports = async (): Promise<Airport[]> => {
 export const searchAirports = async (
   query: string,
   page: number = 1,
-  limit: number = 50
+  limit: number = 100
 ): Promise<Airport[]> => {
   const regex = new RegExp(query, 'i')
 
